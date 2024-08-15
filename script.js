@@ -1,12 +1,16 @@
-const inputs = document.getElementsByClassName("TimesheetSlat__input")
+const inputWrappers = document.querySelectorAll(".TimesheetSlat");
 
-for (let i = 0; i < inputs.length; i++) {
-  if ((i+1)%7 === 6 || (i+1)%7 === 0) {
-    inputs[i].value = 0;
-    continue;
+const filteredInputs = Array.from(inputWrappers).filter((input) => {
+  // add more classes that are not valid, or maybe it will be easier to just target the valid ones. 
+  return input.classList.length === 1 || (!input.classList.contains("js-timesheet-showWeekends") && !input.classList.contains('TimesheetSlat--disabled'))
+});
+
+for (let i = 0; i < filteredInputs.length; i++) {
+  const input = filteredInputs[i].querySelector('input')
+  input.value = 8;
+  if (i === filteredInputs.length - 1) {
+    input.focus()
   }
-
-  inputs[i].value = 8;
 }
 
 // downsides 
