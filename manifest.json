@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "timesheet destroyer",
+  "version": "1.0",
+  "icons": {
+    "16": "lightning.png",
+    "32": "lightning.png",
+    "48": "lightning.png",
+    "128": "lightning.png"
+  },
+  "action": {
+    "default_popup": "hello.html",
+    "default_icon": "lightning.png"
+  },
+  "content_scripts": [
+    {
+      "js": ["script.js"],
+      "matches": [
+        "https://mews.bamboohr.com/employees/timesheet/*"
+      ]
+    }
+  ]
+}
