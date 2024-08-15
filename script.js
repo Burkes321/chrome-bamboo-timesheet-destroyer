@@ -1,24 +1,37 @@
-
-
-// have to get elements by the classname of TimesheetSlat__data
-// then have to 
-
-// we can check how many are disabled and that is the modulo
-
-// if 0 are disabled we are on monday
-// if 1 is disabled we are on tuesday
-// if 2 are disabled we are on wednesday
-// if 3 are disabled we are on thursday
-
 const inputs = document.getElementsByClassName("TimesheetSlat__input")
 
-const validInputs = []
+
+
+const inputsWithWeekendDaysLiveCollection = [];
 
 for (let i = 0; i < inputs.length; i++) {
-  if (inputs[i].className.split(' ').includes("TimesheetSlat__input--disabled")) {
+  if (i%5 === 0 || i%6 === 0) {
+    inputs[i].className = `${inputs[i].className} weekendDay`
+  }
+  inputsWithWeekendDaysLiveCollection.push(inputs[i])
+}
+
+for (let i = 0; i < inputsWithWeekendDaysLiveCollection.length; i++) {
+  if (inputsWithWeekendDaysLiveCollection[i].className.split(' ').includes("weekendDay")) {
+    inputsWithWeekendDaysLiveCollection[i].value = 0
     continue;
   }
   
-  inputs[i].value = 8
-  validInputs.push(inputs[i]);
+  inputsWithWeekendDaysLiveCollection[i].value = 8
 }
+
+// for (let i = 0; i < inputs.length; i++) {
+  
+//   if (inputs[i].className.split(' ').includes("TimesheetSlat__input--disabled")) {
+//     continue;
+//   }
+  
+//   // if we are on a friday increase the counter
+//   if (i%6 === 0 || i%7 === 0) {
+//     console.log('weekend')
+//     inputs[i].value = 0
+//     continue;
+//   }
+  
+//   inputs[i].value = 8
+// }
